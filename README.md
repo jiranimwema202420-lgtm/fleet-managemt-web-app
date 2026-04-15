@@ -1,0 +1,30 @@
+# FleetPulse — Fleet Management Web App
+
+A modern fleet management dashboard built with:
+- **Next.js** (App Router)
+- **React**
+- **Tailwind CSS**
+- **TypeScript**
+
+## Features
+- KPI cards for active vehicles, delivery performance, fuel efficiency, and maintenance alerts.
+- Live fleet activity table with vehicle status badges.
+- Responsive layout for desktop and tablet.
+
+## Getting Started
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Run development server:
+   ```bash
+   npm run dev
+   ```
+3. Open [http://localhost:3000](http://localhost:3000).
+
+## Scripts
+- `npm run dev` - start dev server
+- `npm run build` - production build
+- `npm run start` - run production server
+- `npm run lint` - lint with Next.js ESLint config
