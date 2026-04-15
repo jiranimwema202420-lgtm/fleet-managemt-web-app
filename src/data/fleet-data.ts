@@ -9,6 +9,8 @@ export const fleetRecords: FleetVehicleRecord[] = [
     eta: "10:15 AM",
     fuelLevel: 68,
     utilization: 87,
+    lastServiceDate: "2026-03-22",
+    nextServiceDate: "2026-05-22",
   },
   {
     vehicle: "Van FL-188",
@@ -18,6 +20,8 @@ export const fleetRecords: FleetVehicleRecord[] = [
     eta: "Awaiting assignment",
     fuelLevel: 82,
     utilization: 42,
+    lastServiceDate: "2026-03-28",
+    nextServiceDate: "2026-05-28",
   },
   {
     vehicle: "Truck FL-176",
@@ -27,6 +31,8 @@ export const fleetRecords: FleetVehicleRecord[] = [
     eta: "Back by 2:30 PM",
     fuelLevel: 35,
     utilization: 21,
+    lastServiceDate: "2026-02-10",
+    nextServiceDate: "2026-04-10",
   },
   {
     vehicle: "Van FL-199",
@@ -36,6 +42,8 @@ export const fleetRecords: FleetVehicleRecord[] = [
     eta: "11:05 AM",
     fuelLevel: 56,
     utilization: 78,
+    lastServiceDate: "2026-03-17",
+    nextServiceDate: "2026-05-17",
   },
   {
     vehicle: "Truck FL-211",
@@ -45,6 +53,8 @@ export const fleetRecords: FleetVehicleRecord[] = [
     eta: "09:55 AM",
     fuelLevel: 48,
     utilization: 81,
+    lastServiceDate: "2026-03-08",
+    nextServiceDate: "2026-05-08",
   },
   {
     vehicle: "Van FL-173",
@@ -54,5 +64,7 @@ export const fleetRecords: FleetVehicleRecord[] = [
     eta: "Pending dispatch",
     fuelLevel: 91,
     utilization: 39,
+    lastServiceDate: "2026-03-31",
+    nextServiceDate: "2026-05-31",
   },
 ];

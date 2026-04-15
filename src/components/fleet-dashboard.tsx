@@ -2,17 +2,20 @@
 
 import { useMemo, useState } from "react";
 import { DataTable } from "@/components/data-table";
+import { MaintenancePanel } from "@/components/maintenance-panel";
 import { StatCard } from "@/components/stat-card";
 import type { FleetVehicleRecord, VehicleStatus } from "@/types/fleet";
 
 const statuses: Array<VehicleStatus | "All"> = ["All", "In Transit", "Idle", "Maintenance"];
+type SortBy = "vehicle" | "fuel-high" | "fuel-low" | "utilization-high";
 
 export function FleetDashboard({ records }: { records: FleetVehicleRecord[] }) {
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState<VehicleStatus | "All">("All");
+  const [sortBy, setSortBy] = useState<SortBy>("vehicle");
 
   const filteredRecords = useMemo(() => {
-    return records.filter((record) => {
+    const base = records.filter((record) => {
       const matchesQuery =
         record.vehicle.toLowerCase().includes(query.toLowerCase()) ||
         record.driver.toLowerCase().includes(query.toLowerCase()) ||
@@ -21,7 +24,14 @@ export function FleetDashboard({ records }: { records: FleetVehicleRecord[] }) {
 
       return matchesQuery && matchesStatus;
     });
-  }, [query, records, status]);
+
+    return base.sort((a, b) => {
+      if (sortBy === "fuel-high") return b.fuelLevel - a.fuelLevel;
+      if (sortBy === "fuel-low") return a.fuelLevel - b.fuelLevel;
+      if (sortBy === "utilization-high") return b.utilization - a.utilization;
+      return a.vehicle.localeCompare(b.vehicle);
+    });
+  }, [query, records, sortBy, status]);
 
   const totals = useMemo(() => {
     const active = filteredRecords.filter((record) => record.status === "In Transit").length;
@@ -68,7 +78,7 @@ export function FleetDashboard({ records }: { records: FleetVehicleRecord[] }) {
             <h2 className="text-xl font-semibold text-white">Fleet Filters</h2>
             <p className="mt-1 text-sm text-slate-400">Search by vehicle, driver, or route and narrow by status.</p>
           </div>
-          <div className="grid w-full gap-3 md:w-auto md:grid-cols-[minmax(260px,1fr)_180px]">
+          <div className="grid w-full gap-3 md:w-auto md:grid-cols-[minmax(260px,1fr)_180px_180px]">
             <input
               type="search"
               value={query}
@@ -87,11 +97,24 @@ export function FleetDashboard({ records }: { records: FleetVehicleRecord[] }) {
                 </option>
               ))}
             </select>
+            <select
+              value={sortBy}
+              onChange={(event) => setSortBy(event.target.value as SortBy)}
+              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none ring-accent/40 transition focus:ring-2"
+            >
+              <option value="vehicle">Sort: Vehicle</option>
+              <option value="fuel-high">Fuel High → Low</option>
+              <option value="fuel-low">Fuel Low → High</option>
+              <option value="utilization-high">Utilization High → Low</option>
+            </select>
           </div>
         </div>
       </section>
 
-      <DataTable records={filteredRecords} />
+      <section className="grid gap-4 xl:grid-cols-[2fr_1fr]">
+        <DataTable records={filteredRecords} />
+        <MaintenancePanel records={filteredRecords} />
+      </section>
     </>
   );
 }

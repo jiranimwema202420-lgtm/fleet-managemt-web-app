@@ -8,4 +8,6 @@ export type FleetVehicleRecord = {
   eta: string;
   fuelLevel: number;
   utilization: number;
+  lastServiceDate: string;
+  nextServiceDate: string;
 };

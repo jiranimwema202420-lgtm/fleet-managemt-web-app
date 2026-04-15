@@ -19,12 +19,14 @@ export function DataTable({ records }: { records: FleetVehicleRecord[] }) {
               <th className="px-4 py-2 font-medium">Status</th>
               <th className="px-4 py-2 font-medium">Route</th>
               <th className="px-4 py-2 font-medium">ETA</th>
+              <th className="px-4 py-2 font-medium">Fuel</th>
+              <th className="px-4 py-2 font-medium">Utilization</th>
             </tr>
           </thead>
           <tbody>
             {records.length === 0 ? (
               <tr className="border-t border-slate-800">
-                <td colSpan={5} className="px-4 py-8 text-center text-slate-400">
+                <td colSpan={7} className="px-4 py-8 text-center text-slate-400">
                   No vehicles match the selected filters.
                 </td>
               </tr>
@@ -40,6 +42,8 @@ export function DataTable({ records }: { records: FleetVehicleRecord[] }) {
                   </td>
                   <td className="px-4 py-3">{record.route}</td>
                   <td className="px-4 py-3">{record.eta}</td>
+                  <td className="px-4 py-3">{record.fuelLevel}%</td>
+                  <td className="px-4 py-3">{record.utilization}%</td>
                 </tr>
               ))
             )}
