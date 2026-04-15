@@ -7,8 +7,9 @@ A modern fleet management dashboard built with:
 - **TypeScript**
 
 ## Features
-- KPI cards for active vehicles, delivery performance, fuel efficiency, and maintenance alerts.
-- Live fleet activity table with vehicle status badges.
+- Dynamic KPI cards that recompute based on active filters.
+- Search and status filters for vehicle, driver, and route visibility.
+- Live fleet activity table with status badges and empty-state messaging.
 - Responsive layout for desktop and tablet.
 
 ## Getting Started
