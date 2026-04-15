@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "preview:static": "python3 -m http.server 4173 -d ."
   },
   "dependencies": {
     "next": "15.2.0",

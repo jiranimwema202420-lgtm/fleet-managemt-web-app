@@ -28,3 +28,8 @@ A modern fleet management dashboard built with:
 - `npm run build` - production build
 - `npm run start` - run production server
 - `npm run lint` - lint with Next.js ESLint config
+
+## Local Preview Options
+
+- Preferred (full Next.js app): `npm install && npm run dev`
+- Fallback static preview (no npm install required): `npm run preview:static` then open `http://localhost:4173/preview/`
