@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FleetPulse Preview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#1d4ed8',
+              accent: '#0ea5e9'
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body class="min-h-screen bg-slate-950 text-slate-100 antialiased">
+    <main class="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-8 p-6 md:p-10">
+      <header class="flex flex-col gap-4 rounded-2xl border border-slate-800 bg-gradient-to-r from-primary/20 via-slate-900 to-accent/20 p-8">
+        <p class="text-sm uppercase tracking-[0.2em] text-accent">FleetPulse Platform</p>
+        <h1 class="text-3xl font-semibold text-white md:text-4xl">Fleet Management Web App Preview</h1>
+        <p class="max-w-3xl text-slate-300">Static fallback preview (localhost:4173) used when package installation is blocked.</p>
+      </header>
+
+      <section class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 shadow-xl shadow-slate-950/40">
+          <p class="text-sm text-slate-400">Active Vehicles</p>
+          <p class="mt-2 text-3xl font-semibold text-white">128</p>
+          <p class="mt-2 text-sm text-emerald-400">+6% vs last week</p>
+        </article>
+        <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 shadow-xl shadow-slate-950/40">
+          <p class="text-sm text-slate-400">On-Time Deliveries</p>
+          <p class="mt-2 text-3xl font-semibold text-white">97.4%</p>
+          <p class="mt-2 text-sm text-emerald-400">+1.2% this month</p>
+        </article>
+        <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 shadow-xl shadow-slate-950/40">
+          <p class="text-sm text-slate-400">Fuel Efficiency</p>
+          <p class="mt-2 text-3xl font-semibold text-white">24.8 mpg</p>
+          <p class="mt-2 text-sm text-rose-400">-0.6 mpg today</p>
+        </article>
+        <article class="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 shadow-xl shadow-slate-950/40">
+          <p class="text-sm text-slate-400">Open Maintenance</p>
+          <p class="mt-2 text-3xl font-semibold text-white">14</p>
+          <p class="mt-2 text-sm text-rose-400">3 critical alerts</p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
