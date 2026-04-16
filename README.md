@@ -35,3 +35,9 @@ A modern fleet management dashboard built with:
 
 - Preferred (full Next.js app): `npm install && npm run dev`
 - Fallback static preview (no npm install required): `npm run preview:static` then open `http://localhost:4173/preview/`
+- If localhost binding issues occur, run `npm run preview:static:local` and open `http://127.0.0.1:4173/preview/`.
+
+### Troubleshooting preview connection issues
+- Confirm server is running and port is open: `curl -I http://127.0.0.1:4173/preview/index.html`
+- If your environment blocks `localhost`, use `127.0.0.1` explicitly.
+- If port `4173` is occupied, run: `python3 scripts/preview_server.py --port 3000`

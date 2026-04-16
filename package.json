@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "preview:static": "python3 -m http.server 4173 -d ."
+    "preview:static": "python3 scripts/preview_server.py",
+    "preview:static:local": "python3 scripts/preview_server.py --host 127.0.0.1"
   },
   "dependencies": {
     "next": "15.2.0",
