@@ -1,47 +1,69 @@
-# FleetPulse — Fleet Management Web App
+# 🚛 Opulent FleetPro
 
-A modern fleet management dashboard built with:
-- **Next.js** (App Router)
-- **React**
-- **Tailwind CSS**
-- **TypeScript**
+**Opulent FleetPro** is a high-fidelity, command-and-control ecosystem designed for elite transport logistics. It combines real-time asset telemetry, financial precision, and generative AI intelligence to provide an unparalleled management experience.
 
-## Features
-- Multi-page FleetPulse experience with dedicated Dashboard, Vehicles, Drivers, and Maintenance pages.
-- Dynamic KPI cards that recompute based on active filters.
-- Search, status filters, and sort controls for vehicle, driver, and route visibility.
-- Live fleet activity table with status badges, fuel/utilization metrics, and empty-state messaging.
-- Maintenance & risk alert panel highlighting low-fuel and upcoming-service vehicles.
-- Shared fleet utility functions for filtering, sorting, and metrics.
-- API-backed page loading via Next.js route handlers (`/api/vehicles`, `/api/drivers`, `/api/maintenance`).
-- Vehicle management page includes API-backed add/remove actions.
-- Responsive layout for desktop and tablet.
+---
 
-## Getting Started
+## 💎 The Opulent Experience
 
-1. Install dependencies:
+Opulent FleetPro is built on three pillars: **Strategic Intelligence**, **Tactical Precision**, and **Financial Integrity**.
+
+### 🧠 Strategic Intelligence
+- **AI Operational Core**: Powered by Google Gemini 2.5 and Genkit, providing deep analysis of fleet performance.
+- **The Executive Briefing**: A high-profile feature that synthesizes operational data into a high-quality audio summary using advanced Text-to-Speech (TTS).
+- **Onboarding Roadmap**: Intelligent "Cold Start" strategies for new nodes (empty databases).
+
+### 🛠️ Tactical Management
+- **Fleet Registry**: Detailed management of vehicle assets with integrated photo verification.
+- **Personnel Directory**: Comprehensive crew tracking with automated compliance alerts for license expirations.
+- **Service Logs**: Mission-critical maintenance orchestration with priority-based queuing.
+
+### 💰 Compliance & Ledgers
+- **Operating Costs**: Real-time tracking of administrative and overhead expenses.
+- **Payroll Control**: Secure disbursement logs for drivers and staff.
+- **Asset Protection**: Insurance policy management and carrier relationship tracking.
+
+---
+
+## 🚀 Tech Stack
+
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) & [ShadCN UI](https://ui.shadcn.com/)
+- **Backend**: [Firebase](https://firebase.google.com/) (Firestore, Authentication, App Hosting)
+- **AI Core**: [Genkit](https://github.com/firebase/genkit) & [Google Gemini 2.5 Flash](https://deepmind.google/technologies/gemini/)
+- **Audio Processing**: [Wav.js](https://www.npmjs.com/package/wav) for high-fidelity briefing generation.
+
+---
+
+## 📂 Project Structure
+
+- `src/app/`: Next.js App Router pages and layouts.
+- `src/ai/`: Genkit flows and AI prompt definitions.
+- `src/firebase/`: Specialized Firebase hooks, providers, and non-blocking update utilities.
+- `src/components/ui/`: Reusable ShadCN components.
+- `docs/`: Database blueprints and operational documentation.
+
+---
+
+## 🛠️ Getting Started
+
+1. **Firebase Setup**:
+   - Create a project in the [Firebase Console](https://console.firebase.google.com/).
+   - Enable **Firestore** and **Anonymous Authentication**.
+   - Populate `src/firebase/config.ts` with your project credentials.
+
+2. **AI Configuration**:
+   - Ensure `GOOGLE_GENAI_API_KEY` is set in your environment variables for Gemini access.
+
+3. **Development**:
    ```bash
    npm install
-   ```
-2. Run development server:
-   ```bash
    npm run dev
    ```
-3. Open [http://localhost:3000](http://localhost:3000).
 
-## Scripts
-- `npm run dev` - start dev server
-- `npm run build` - production build
-- `npm run start` - run production server
-- `npm run lint` - lint with Next.js ESLint config
+---
 
-## Local Preview Options
+## ⚖️ License
 
-- Preferred (full Next.js app): `npm install && npm run dev`
-- Fallback static preview (no npm install required): `npm run preview:static` then open `http://localhost:4173/preview/`
-- If localhost binding issues occur, run `npm run preview:static:local` and open `http://127.0.0.1:4173/preview/`.
-
-### Troubleshooting preview connection issues
-- Confirm server is running and port is open: `curl -I http://127.0.0.1:4173/preview/index.html`
-- If your environment blocks `localhost`, use `127.0.0.1` explicitly.
-- If port `4173` is occupied, run: `python3 scripts/preview_server.py --port 3000`
+Proprietary ecosystem developed for **Opulence Transporters**. Unauthorized duplication is prohibited.

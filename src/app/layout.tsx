@@ -3,8 +3,8 @@ import { TopNav } from "@/components/top-nav";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "FleetPulse | Fleet Management Dashboard",
-  description: "Manage vehicles, drivers, routes, and maintenance in one place.",
+  title: "Opulent FleetPro | Command & Control Dashboard",
+  description: "High-fidelity fleet command, telemetry, and financial intelligence platform.",
 };
 
 export default function RootLayout({
