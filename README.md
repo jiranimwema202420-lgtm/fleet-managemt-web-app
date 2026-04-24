@@ -39,6 +39,7 @@ Opulent FleetPro is built on three pillars: **Strategic Intelligence**, **Tactic
 ## 📂 Project Structure
 
 - `src/app/`: Next.js App Router pages and layouts.
+  - Operational routes: `/`, `/intelligence`, `/vehicles`, `/drivers`, `/maintenance`, `/finance`, `/onboarding`
 - `src/ai/`: Genkit flows and AI prompt definitions.
 - `src/firebase/`: Specialized Firebase hooks, providers, and non-blocking update utilities.
 - `src/components/ui/`: Reusable ShadCN components.
