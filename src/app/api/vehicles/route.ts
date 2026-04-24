@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
-import { addVehicle, getVehicles } from "@/lib/fleet-store";
+import { createVehicle, listVehicles } from "@/lib/vehicle-repository";
 import type { FleetVehicleRecord } from "@/types/fleet";
 
 export async function GET() {
-  const vehicles = getVehicles();
+  const vehicles = await listVehicles();
   return NextResponse.json({ data: vehicles, count: vehicles.length });
 }
 
@@ -27,6 +27,6 @@ export async function POST(request: Request) {
     nextServiceDate: body.nextServiceDate ?? "2026-06-01",
   };
 
-  addVehicle(newVehicle);
-  return NextResponse.json({ data: newVehicle }, { status: 201 });
+  const createdVehicle = await createVehicle(newVehicle);
+  return NextResponse.json({ data: createdVehicle }, { status: 201 });
 }

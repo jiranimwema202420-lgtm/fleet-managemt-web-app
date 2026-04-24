@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import { getDriverSummaries } from "@/lib/fleet-functions";
-import { getVehicles } from "@/lib/fleet-store";
+import { listVehicles } from "@/lib/vehicle-repository";
 
 export async function GET() {
-  const summaries = getDriverSummaries(getVehicles());
+  const summaries = getDriverSummaries(await listVehicles());
   return NextResponse.json({ data: summaries, count: summaries.length });
 }

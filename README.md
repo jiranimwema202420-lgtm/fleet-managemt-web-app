@@ -61,7 +61,11 @@ Opulent FleetPro is built on three pillars: **Strategic Intelligence**, **Tactic
    - Add Next.js public Firebase keys: `NEXT_PUBLIC_FIREBASE_API_KEY`, `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`, `NEXT_PUBLIC_FIREBASE_PROJECT_ID`, `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET`, `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID`, `NEXT_PUBLIC_FIREBASE_APP_ID`.
    - Anonymous auth is automatically initialized by `FirebaseProvider` on app load.
 
-4. **Development**:
+4. **Data Layer Mode**:
+   - If Firebase env vars are present, vehicle CRUD APIs use Firestore.
+   - If env vars are missing, APIs automatically fall back to the in-memory `fleet-store`.
+
+5. **Development**:
    ```bash
    npm install
    npm run dev

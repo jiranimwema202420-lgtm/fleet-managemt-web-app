@@ -1,13 +1,18 @@
 import { NextResponse } from "next/server";
-import { removeVehicle } from "@/lib/fleet-store";
+import { deleteVehicle } from "@/lib/vehicle-repository";
 
 export async function DELETE(_: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const removed = removeVehicle(id);
 
-  if (!removed) {
-    return NextResponse.json({ error: "Vehicle not found." }, { status: 404 });
+  try {
+    const removed = await deleteVehicle(id);
+
+    if (!removed) {
+      return NextResponse.json({ error: "Vehicle not found." }, { status: 404 });
+    }
+
+    return NextResponse.json({ ok: true });
+  } catch {
+    return NextResponse.json({ error: "Failed to delete vehicle." }, { status: 500 });
   }
-
-  return NextResponse.json({ ok: true });
 }
