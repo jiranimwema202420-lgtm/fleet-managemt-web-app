@@ -57,7 +57,11 @@ Opulent FleetPro is built on three pillars: **Strategic Intelligence**, **Tactic
 2. **AI Configuration**:
    - Ensure `GOOGLE_GENAI_API_KEY` is set in your environment variables for Gemini access.
 
-3. **Development**:
+3. **Firebase Environment Variables**:
+   - Add Next.js public Firebase keys: `NEXT_PUBLIC_FIREBASE_API_KEY`, `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`, `NEXT_PUBLIC_FIREBASE_PROJECT_ID`, `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET`, `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID`, `NEXT_PUBLIC_FIREBASE_APP_ID`.
+   - Anonymous auth is automatically initialized by `FirebaseProvider` on app load.
+
+4. **Development**:
    ```bash
    npm install
    npm run dev
