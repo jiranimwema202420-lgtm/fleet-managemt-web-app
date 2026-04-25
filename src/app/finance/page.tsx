@@ -13,7 +13,7 @@ export default function FinancePage() {
             {operatingCosts.map((item) => (
               <li key={item.category} className="flex items-center justify-between">
                 <span>{item.category}</span>
-                <span>${item.amount.toLocaleString()}</span>
+                <span>${item.amount.toLocaleString("en-US")}</span>
               </li>
             ))}
           </ul>
@@ -26,7 +26,7 @@ export default function FinancePage() {
               <li key={item.person} className="rounded border border-slate-800 p-2">
                 <p className="font-medium text-slate-100">{item.person}</p>
                 <p>
-                  {item.role} • ${item.amount.toLocaleString()} • {item.status}
+                  {item.role} • ${item.amount.toLocaleString("en-US")} • {item.status}
                 </p>
               </li>
             ))}

@@ -1,30 +1,38 @@
-import { fleetRecords } from "@/data/fleet-data";
-import { getFleetTotals } from "@/lib/fleet-functions";
+const intelligenceCards = [
+  {
+    title: "Active Fleet Index",
+    value: "128",
+    hint: "Nodes currently in motion",
+    tone: "text-emerald-300",
+  },
+  {
+    title: "Maintenance Pressure",
+    value: "14",
+    hint: "Units requiring intervention",
+    tone: "text-amber-300",
+  },
+  {
+    title: "Executive Briefing",
+    value: "Ready",
+    hint: "Audio briefing can be generated",
+    tone: "text-cyan-300",
+  },
+];
 
 export default function IntelligencePage() {
-  const totals = getFleetTotals(fleetRecords);
-
   return (
     <main className="mx-auto min-h-screen w-full max-w-7xl p-6 md:p-10">
       <h1 className="text-3xl font-semibold text-white">Strategic Intelligence</h1>
       <p className="mt-2 text-slate-400">AI-guided executive insight board for operational and readiness signals.</p>
 
       <section className="mt-6 grid gap-4 md:grid-cols-3">
-        <article className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6">
-          <p className="text-sm text-slate-400">Active Fleet Index</p>
-          <p className="mt-2 text-3xl font-semibold text-white">{totals.active}</p>
-          <p className="mt-2 text-sm text-emerald-300">Nodes in-motion right now</p>
-        </article>
-        <article className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6">
-          <p className="text-sm text-slate-400">Maintenance Pressure</p>
-          <p className="mt-2 text-3xl font-semibold text-white">{totals.maintenance}</p>
-          <p className="mt-2 text-sm text-amber-300">Units requiring immediate attention</p>
-        </article>
-        <article className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6">
-          <p className="text-sm text-slate-400">AI Briefing Status</p>
-          <p className="mt-2 text-3xl font-semibold text-white">Ready</p>
-          <p className="mt-2 text-sm text-cyan-300">Executive audio summary can be generated</p>
-        </article>
+        {intelligenceCards.map((card) => (
+          <article key={card.title} className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6">
+            <p className="text-sm text-slate-400">{card.title}</p>
+            <p className="mt-2 text-3xl font-semibold text-white">{card.value}</p>
+            <p className={`mt-2 text-sm ${card.tone}`}>{card.hint}</p>
+          </article>
+        ))}
       </section>
 
       <section className="mt-6 rounded-2xl border border-slate-800 bg-slate-900/70 p-6">

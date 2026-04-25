@@ -1,6 +1,6 @@
-import { getApps, initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+let appCache: unknown | null = null;
+let authCache: unknown | null = null;
+let dbCache: unknown | null = null;
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -11,8 +11,36 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-const app = getApps().length > 0 ? getApps()[0] : initializeApp(firebaseConfig);
+const dynamicImport = new Function("m", "return import(m)") as (moduleName: string) => Promise<any>;
 
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-export default app;
+export function isFirebaseClientConfigured() {
+  return Boolean(firebaseConfig.apiKey && firebaseConfig.projectId && firebaseConfig.appId);
+}
+
+export async function getFirebaseClient() {
+  if (!isFirebaseClientConfigured()) {
+    return null;
+  }
+
+  if (appCache && authCache && dbCache) {
+    return { app: appCache, auth: authCache, db: dbCache };
+  }
+
+  try {
+    const appModule = await dynamicImport("firebase/app");
+    const authModule = await dynamicImport("firebase/auth");
+    const firestoreModule = await dynamicImport("firebase/firestore");
+
+    const app = appModule.getApps().length > 0 ? appModule.getApps()[0] : appModule.initializeApp(firebaseConfig);
+    const auth = authModule.getAuth(app);
+    const db = firestoreModule.getFirestore(app);
+
+    appCache = app;
+    authCache = auth;
+    dbCache = db;
+
+    return { app, auth, db };
+  } catch {
+    return null;
+  }
+}

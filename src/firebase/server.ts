@@ -1,6 +1,3 @@
-import { getApps, initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -10,9 +7,32 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
+const dynamicImport = new Function("m", "return import(m)") as (moduleName: string) => Promise<any>;
+
 export function isFirebaseConfigured() {
   return Boolean(firebaseConfig.apiKey && firebaseConfig.projectId && firebaseConfig.appId);
 }
 
-const app = getApps().length > 0 ? getApps()[0] : initializeApp(firebaseConfig);
-export const dbServer = getFirestore(app);
+let dbCache: unknown | null = null;
+
+export async function getServerDb() {
+  if (!isFirebaseConfigured()) {
+    return null;
+  }
+
+  if (dbCache) {
+    return dbCache;
+  }
+
+  try {
+    const appModule = await dynamicImport("firebase/app");
+    const firestoreModule = await dynamicImport("firebase/firestore");
+
+    const app = appModule.getApps().length > 0 ? appModule.getApps()[0] : appModule.initializeApp(firebaseConfig);
+    const db = firestoreModule.getFirestore(app);
+    dbCache = db;
+    return db;
+  } catch {
+    return null;
+  }
+}
