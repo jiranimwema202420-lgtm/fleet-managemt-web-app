@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createVehicle, listVehicles } from "@/lib/vehicle-repository";
+import { createVehicleSchema } from "@/lib/validators/vehicle";
 import type { FleetVehicleRecord } from "@/types/fleet";
 
 export async function GET() {
@@ -8,23 +9,32 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const body = (await request.json()) as Partial<FleetVehicleRecord>;
+  const body = await request.json();
+  const parsed = createVehicleSchema.safeParse(body);
 
-  if (!body.vehicle || !body.driver || !body.route || !body.eta || !body.status) {
-    return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
+  if (!parsed.success) {
+    return NextResponse.json(
+      {
+        error: "Invalid payload.",
+        issues: parsed.error.issues.map((issue) => ({ path: issue.path.join("."), message: issue.message })),
+      },
+      { status: 400 },
+    );
   }
 
+  const input = parsed.data;
+
   const newVehicle: FleetVehicleRecord = {
-    id: body.id ?? `fl-${Math.random().toString(36).slice(2, 7)}`,
-    vehicle: body.vehicle,
-    driver: body.driver,
-    status: body.status,
-    route: body.route,
-    eta: body.eta,
-    fuelLevel: body.fuelLevel ?? 70,
-    utilization: body.utilization ?? 50,
-    lastServiceDate: body.lastServiceDate ?? "2026-04-01",
-    nextServiceDate: body.nextServiceDate ?? "2026-06-01",
+    id: input.id ?? `fl-${Math.random().toString(36).slice(2, 7)}`,
+    vehicle: input.vehicle,
+    driver: input.driver,
+    status: input.status,
+    route: input.route,
+    eta: input.eta,
+    fuelLevel: input.fuelLevel ?? 70,
+    utilization: input.utilization ?? 50,
+    lastServiceDate: input.lastServiceDate ?? "2026-04-01",
+    nextServiceDate: input.nextServiceDate ?? "2026-06-01",
   };
 
   const createdVehicle = await createVehicle(newVehicle);
